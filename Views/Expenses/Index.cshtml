@@ -1,0 +1,64 @@
+﻿@model IEnumerable<PracticeProj.Models.Expenses>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Expenses</h1>
+
+<div style="display: flex; justify-content: flex-start;">
+    <p style="padding: 10px;">
+        <a asp-action="Create" class="btn btn-primary btn-sm">Create New</a>
+    </p>
+    <p style="padding: 10px;">
+        <a asp-action="ShowExpenses" class="btn btn-primary btn-sm">Show Data</a>
+    </p>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>                
+                <a asp-action="Edit" class="btn btn-primary btn-sm" asp-route-id="@item.Id">
+                    <i class="bi bi-pencil-fill"></i>
+                </a>
+                <a asp-action="Details" class="btn btn-info btn-sm" asp-route-id="@item.Id">Details</a> 
+                <a asp-action="Delete" class="btn btn-danger btn-sm"  asp-route-id="@item.Id">
+                        <i class="bi bi-trash-fill"></i>
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
